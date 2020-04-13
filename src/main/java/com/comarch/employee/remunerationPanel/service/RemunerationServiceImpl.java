@@ -8,12 +8,11 @@ import com.comarch.employee.remunerationPanel.model.Average;
 import com.comarch.employee.remunerationPanel.model.ObjectMoney;
 import com.comarch.employee.remunerationPanel.model.Remuneration;
 import com.comarch.employee.remunerationPanel.repo.RemunerationRepo;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
@@ -76,11 +75,14 @@ public class RemunerationServiceImpl implements RemunerationService {
     }
 
     @Override
-    public Average getLast12MountsSalaryByEmployeeNumber(Long employeeNumber, Pageable pageable) {
+    public Average getLast12MountsSalaryByEmployeeNumber(Long employeeNumber) {
+
+       // Pageable top12 = new PageRequest(0, 12);
 
         Average average = new Average();
         UUID idEmployee = methodsEmployee.findIdByIdEmployeeNumber(employeeNumber);
-        List<Remuneration> averageList = remunerationRepo.findFirstByIdEmployeeOrderBySalaryDateDesc(idEmployee);
+        //List<Remuneration> averageList = remunerationRepo.findAllByIdEmployeeOrderBySalaryDateDesc(idEmployee, top12);
+        List<Remuneration> averageList = remunerationRepo.findFirst10ByIdEmployeeOrderBySalaryDateDesc(idEmployee);
 
         int size = averageList.size();
         Double sumSalaryDouble = 0.00;

@@ -23,5 +23,9 @@ public interface RemunerationRepo extends JpaRepository<Remuneration, UUID>, Jpa
 
     Page<Remuneration> findAllByIdEmployee(UUID idEmployee, Pageable pageable);
 
-    List<Remuneration> findFirstByIdEmployeeOrderBySalaryDateDesc(UUID uuid);
+    List<Remuneration> findAllByIdEmployeeOrderBySalaryDateDesc(UUID uuid, Pageable pageable);
+
+    List<Remuneration> findFirst10ByIdEmployeeOrderBySalaryDateDesc(UUID uuid);
+
+
 }

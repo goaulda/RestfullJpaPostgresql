@@ -75,10 +75,9 @@ public class RemunerationController {
 
     @RequestMapping(value = "/salary/{employeeNumber}/average12mounts", method = RequestMethod.GET)
     ResponseEntity<Average> getLast12MountsSalaryByEmployeeNumber(
-            @PathVariable(value = "employeeNumber", required = true) Long employeeNumber,
-            Pageable pageable
+            @PathVariable(value = "employeeNumber", required = true) Long employeeNumber
     ){
-        Average last12MountsSalaryByEmployeeNumber = remunerationService.getLast12MountsSalaryByEmployeeNumber(employeeNumber, pageable);
+        Average last12MountsSalaryByEmployeeNumber = remunerationService.getLast12MountsSalaryByEmployeeNumber(employeeNumber);
         return new ResponseEntity<Average>(last12MountsSalaryByEmployeeNumber,HttpStatus.OK);
     }
 

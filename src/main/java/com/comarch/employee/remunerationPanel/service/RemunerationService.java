@@ -21,7 +21,7 @@ public interface RemunerationService {
 
     Page<Remuneration> getSalariesByEmployeeNumber(Long employeeNumber, Pageable pageable);
 
-    Average getLast12MountsSalaryByEmployeeNumber(Long employeeNumber, Pageable pageable);
+    Average getLast12MountsSalaryByEmployeeNumber(Long employeeNumber);
 
     Average getAverageSalariesByEmployeeNumber(Long employeeNumber, String firstPeriod, String lastPeriod, Pageable pageable);
 }
